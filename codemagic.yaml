@@ -26,10 +26,18 @@ workflows:
           bundle install
       - name: Setup XCRemoteCache
         script: |
-          xcremotecache/xcprepare integrate --input "$XCODE_PROJECT" --mode producer --final-producer-target "$XCODE_TARGET"
+          xcremotecache/xcprepare integrate \ 
+          --input "$XCODE_PROJECT" \ 
+          --mode producer \
+          --final-producer-target "$XCODE_TARGET"
       - name: Build IPA
         script: |
-          xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          xcodebuild build \
+          --workspace "$XCODE_WORKSPACE" \
+          --scheme "$XCODE_SCHEME" \
+          CODE_SIGN_INDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
