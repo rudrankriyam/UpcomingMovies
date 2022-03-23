@@ -13,11 +13,11 @@ workflows:
         XCODE_SCHEME: "UpcomingMovies"
 
     scripts:
-      - name: Decode RC Config File
+      - name: Decoding RC Config File
         script: |
           echo $RC_CONFIG | base64 --decode > $CM_BUILD_DIR/.rcinfo
 
-      - name: Install pods
+      - name: Installing pods
         script: |
           pod install
 
