@@ -12,6 +12,7 @@ import Swinject
 final class DIContainer {
 
     static let shared = DIContainer()
+    /// make changes
 
     let container: Container = Container()
     let assembler: Assembler
