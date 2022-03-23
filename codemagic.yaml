@@ -23,7 +23,7 @@ workflows:
 
       - name: Setup XCRemoteCache
         script: |
-          xcremotecache/xcprepare integrate --input "$XCODE_PROJECT" --mode producer --targets-include UpcomingMoviesWidgetExtension --final-producer-target "$XCODE_TARGET"
+          xcremotecache/xcprepare integrate --input "$XCODE_PROJECT" --mode producer --targets-include UpcomingMovies,UpcomingMoviesWidgetExtension --final-producer-target "$XCODE_TARGET"
 
       - name: Build IPA
         script: |
