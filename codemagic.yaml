@@ -20,3 +20,5 @@ workflows:
       - name: Build IPA
         script: |
           xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+      - name: Run unit tests
+        script: bundle exec fastlane tests
