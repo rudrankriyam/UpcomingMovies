@@ -5,8 +5,6 @@ workflows:
     environment:
       xcode: 13.3
       cocoapods: default
-      groups:
-        - remote_caching
       vars:
         XCODE_PROJECT: "UpcomingMovies.xcodeproj"
         XCODE_WORKSPACE: "UpcomingMovies.xcworkspace"
@@ -17,8 +15,5 @@ workflows:
       - name: Installing pods
         script: |
           pod install
-      - name: Build IPA
-        script: |
-          xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
       - name: Run unit tests
         script: bundle exec fastlane tests
