@@ -14,18 +14,9 @@ workflows:
         XCODE_SCHEME: "UpcomingMovies"
 
     scripts:
-      - name: Decoding RC Config File
-        script: |
-          echo $RC_CONFIG | base64 --decode > $CM_BUILD_DIR/.rcinfo
-
       - name: Installing pods
         script: |
           pod install
-
-      - name: Setup XCRemoteCache
-        script: |
-          xcremotecache/xcprepare integrate --input "$XCODE_PROJECT" --mode producer --final-producer-target "$XCODE_TARGET" --targets-include UpcomingMovies,UpcomingMoviesWidgetExtension
-
       - name: Build IPA
         script: |
           xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
