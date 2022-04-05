@@ -12,8 +12,9 @@ workflows:
         XCODE_SCHEME: "UpcomingMovies"
 
     scripts:
-      - name: Installing pods
+      - name: Installing
         script: |
           pod install
+          gem install rake && bundle install
       - name: Run unit tests
         script: bundle exec fastlane tests
