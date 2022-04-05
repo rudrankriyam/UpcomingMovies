@@ -1,7 +1,7 @@
 workflows:
   ios-workflow:
     name: iOS Workflow
-     instance_type: mac_mini_m1
+    instance_type: mac_mini_m1
     environment:
       xcode: 13.3
       cocoapods: default
