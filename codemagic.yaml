@@ -1,8 +1,9 @@
 workflows:
   ios-workflow:
     name: iOS Workflow
+     instance_type: mac_mini_m1
     environment:
-      xcode: latest
+      xcode: 13.3
       cocoapods: default
       groups:
         - remote_caching
