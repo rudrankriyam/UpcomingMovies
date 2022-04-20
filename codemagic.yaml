@@ -23,7 +23,7 @@ workflows:
     scripts:
       - *install
       - name: Run unit tests
-        script: bundle exec fastlane tests
+        script: xcodebuild build -workspace "UpcomingMovies.xcworkspace" -scheme "UpcomingMovies" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
   ios-m1-rosetta-workflow:
     name: M1 Rosetta Workflow
     instance_type: mac_mini_m1
@@ -34,7 +34,7 @@ workflows:
     scripts:
       - *install
       - name: Run unit tests
-        script: bundle exec fastlane tests
+        script: xcodebuild build -workspace "UpcomingMovies.xcworkspace" -scheme "UpcomingMovies" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
   ios-m1-silicon-workflow:
     name: M1 Silicon Workflow
     instance_type: mac_mini_m1
@@ -45,4 +45,4 @@ workflows:
     scripts:
       - *install
       - name: Run unit tests
-        script: arch -arm64 bundle exec fastlane tests
+        script: arch -arm64 xcodebuild build -workspace "UpcomingMovies.xcworkspace" -scheme "UpcomingMovies" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
