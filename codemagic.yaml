@@ -1,20 +1,48 @@
-workflows:
-  ios-workflow:
-    name: iOS Workflow
-    instance_type: mac_mini_m1
-    environment:
-      xcode: 13.3
-      cocoapods: default
-      vars:
-        XCODE_PROJECT: "UpcomingMovies.xcodeproj"
-        XCODE_WORKSPACE: "UpcomingMovies.xcworkspace"
-        XCODE_TARGET: "UpcomingMovies"
-        XCODE_SCHEME: "UpcomingMovies"
-
-    scripts:
-      - name: Installing
-        script: |
+definitions:
+ env_versions: &env_versions
+   xcode: 13.3
+ triggering:
+  push: &push_event
+      events:
+        - push
+ scripts:
+    - &install
+      name: Installing
+      script: |
           pod install
           gem install rake && bundle install
+          
+workflows:
+  ios-mac-pro-workflow:
+    name: Mac Pro Workflow
+    instance_type: mac_pro
+    environment:
+      <<: *env_versions
+    triggering: 
+      <<: *push_event
+    scripts:
+      - *install
       - name: Run unit tests
         script: bundle exec fastlane tests
+  ios-m1-rosetta-workflow:
+    name: M1 Rosetta Workflow
+    instance_type: mac_mini_m1
+    environment:
+      <<: *env_versions
+    triggering: 
+      <<: *push_event
+    scripts:
+      - *install
+      - name: Run unit tests
+        script: bundle exec fastlane tests
+  ios-m1-silicon-workflow:
+    name: M1 Silicon Workflow
+    instance_type: mac_mini_m1
+    environment:
+      <<: *env_versions
+    triggering: 
+      <<: *push_event
+    scripts:
+      - *install
+      - name: Run unit tests
+        script: arch -arm64 bundle exec fastlane tests
