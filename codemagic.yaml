@@ -14,7 +14,7 @@ definitions:
     - &test 
       name: Run tests 
       script: | 
-          xcode-project run-tests \
+          arch -arm64 xcode-project run-tests \
           --workspace UpcomingMovies.xcworkspace \
           --scheme UpcomingMovies \
           --device "iPhone 11"
