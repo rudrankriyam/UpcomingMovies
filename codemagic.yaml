@@ -11,7 +11,16 @@ definitions:
       script: |
           pod install
           gem install rake && bundle install
-          
+    - &test 
+      name: Run tests 
+      script: | 
+          xcode-project run-tests \
+          --workspace UpcomingMovies.xcworkspace \
+          --scheme UpcomingMovies \
+          --device "iPhone 11"
+    - &build
+      name: Run build 
+      script: xcodebuild build -workspace "UpcomingMovies.xcworkspace" -scheme "UpcomingMovies" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12 Pro,OS=15.4' -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO 
 workflows:
   ios-mac-pro-workflow:
     name: Mac Pro Workflow
@@ -22,8 +31,8 @@ workflows:
       <<: *push_event
     scripts:
       - *install
-      - name: Run unit tests
-        script: xcodebuild build -workspace "UpcomingMovies.xcworkspace" -scheme "UpcomingMovies" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+      - *build
+      - *test
   ios-m1-rosetta-workflow:
     name: M1 Rosetta Workflow
     instance_type: mac_mini_m1
@@ -33,16 +42,6 @@ workflows:
       <<: *push_event
     scripts:
       - *install
-      - name: Run unit tests
-        script: xcodebuild build -workspace "UpcomingMovies.xcworkspace" -scheme "UpcomingMovies" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-  ios-m1-silicon-workflow:
-    name: M1 Silicon Workflow
-    instance_type: mac_mini_m1
-    environment:
-      <<: *env_versions
-    triggering: 
-      <<: *push_event
-    scripts:
-      - *install
-      - name: Run unit tests
-        script: arch -arm64 xcodebuild build -workspace "UpcomingMovies.xcworkspace" -scheme "UpcomingMovies" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+      - uname -m
+      - *build
+      - *test
