@@ -1,4 +1,6 @@
 # Upcoming Movies App
+[![Star History Chart](https://api.star-history.com/svg?repos=rudrankriyam/UpcomingMovies&type=Date)](https://star-history.com/#rudrankriyam/UpcomingMovies&Date)
+
 
 [![License](https://img.shields.io/cocoapods/l/DLAutoSlidePageViewController.svg?style=flat)]()
 [![Platform](https://img.shields.io/cocoapods/p/DLAutoSlidePageViewController.svg?style=flat)]()
