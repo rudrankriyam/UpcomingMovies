@@ -1,5 +1,4 @@
 # Upcoming Movies App
-[![Star History Chart](https://api.star-history.com/svg?repos=rudrankriyam/UpcomingMovies&type=Date)](https://star-history.com/#rudrankriyam/UpcomingMovies&Date)
 
 
 [![License](https://img.shields.io/cocoapods/l/DLAutoSlidePageViewController.svg?style=flat)]()
@@ -68,3 +67,5 @@ Feel free to open an issue or submit a pull request if you have any improvement 
 ## Author
 
 Alonso Alvarez, alonso.alvarez.dev@gmail.com
+
+[![Star History Chart](https://api.star-history.com/svg?repos=rudrankriyam/UpcomingMovies&type=Date)](https://star-history.com/#rudrankriyam/UpcomingMovies&Date)
